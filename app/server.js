@@ -43,6 +43,9 @@ const server = http.createServer(async (request, response) => {
                 case 'css':
                     contentType = 'text/css';
                     break;
+                case 'json':
+                    contentType = 'application/json';
+                    break;
                 case 'js':
                     contentType = 'text/javascript';
                     break;
