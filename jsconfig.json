@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "target": "esnext", // define to your liking
+      "baseUrl": "./app/",
+      "moduleResolution": "classic"
+    },
+    "exclude": ["node_modules"] // Optional
+  }

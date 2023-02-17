@@ -1,0 +1,45 @@
+body {
+    background-color: grey;
+}
+
+.grid-menu {
+    display: grid;
+    grid-gap: 0.5rem;
+}
+
+@media (min-width: 40em) {
+    .grid-menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-menu > *:nth-child(odd) {
+        box-shadow: -0.075em 0 .1em black !important;
+    }
+    
+    .grid-menu > *:nth-child(even) {
+        box-shadow: .075em 0 .1em black !important;
+    }
+}
+
+.grid-menu > * {
+    text-align: center;
+    font-size: large;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 2rem;
+    font-size: xx-large;
+}
+
+.grid-menu > *:nth-child(odd) {
+    box-shadow: -0.075em 0 .1em black, .075em 0 .1em black;
+}
+
+.grid-menu > *:nth-child(even) {
+    box-shadow: -0.075em 0 .1em black, .075em 0 .1em black;
+}

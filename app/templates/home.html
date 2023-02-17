@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>IOT Server</title>
+        <script src="src/frontend/utils/commonjs.js"></script>
+        <script>
+            loadModule('src/common/promisify');
+            loadModule('src/frontend/template');
+            loadModule('src/frontend/menu');
+            loadModule('src/frontend/main');
+        </script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <link rel="stylesheet" href="styles/main.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <noscript type="template" id="menu-template">
+            <div class="grid-menu">
+                {{#menuItems}}
+                    <button {{#id}}data-id="{{id}}"{{/id}}>{{caption}}</button>
+                {{/menuItems}}
+            </div>
+        </noscript>
+    </body>
+</html>

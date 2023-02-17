@@ -1,0 +1,8 @@
+{
+    "name": "iot-local-server",
+    "version": "0.0.1",
+    "author": "Leonid Taran <horinis@gmail.com>",
+    "scripts": {
+        "server": "node ./app/server.js"
+    }
+}
