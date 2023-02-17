@@ -18,7 +18,7 @@ function notFound(response) {
 
 const server = http.createServer(async (request, response) => {
     const path = url.parse(request.url).pathname;
-    if (/^[src\/backend|server]/.test(path)) {
+    if (/^(src\/backend|server.js)/.test(path)) {
         return notFound(response);
     }
     switch (path) {
