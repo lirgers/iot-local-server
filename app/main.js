@@ -4,11 +4,14 @@ customizeRequire(__dirname);
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
+const server = require('src/backend/server');
 const promosify = require('src/common/promisify');
 
+const readFile = promosify(fs.readFile);
 const APP_DIR = `${__dirname}/`;
 const PORT = 8888;
-const readFile = promosify(fs.readFile);
+
+server.attachControllers(APP_DIR);
 
 function notFound(response) {
     response.writeHead(404);
@@ -16,19 +19,14 @@ function notFound(response) {
     response.end();
 }
 
-const server = http.createServer(async (request, response) => {
+const nativeServer = http.createServer(async (request, response) => {
     const path = url.parse(request.url).pathname;
-    if (/^(src\/backend|server.js)/.test(path)) {
+    if (/^(src\/backend|main.js)/.test(path)) {
         return notFound(response);
     }
-    switch (path) {
-        case '/home':
-        case '/':
-            const contents = await readFile(`${APP_DIR}templates/home.html`)
-            response.setHeader("Content-Type", "text/html");
-            response.writeHead(200);
-            response.end(contents);
-            return;
+    const controllerExists = await server.executeController(path, request, response);
+    if (controllerExists) {
+        return;
     }
     try {
         const data = await readFile(APP_DIR + path.substring(1));
@@ -66,27 +64,12 @@ const server = http.createServer(async (request, response) => {
     }
 });
 
-server.listen(PORT, null, null, () => {
-    const { networkInterfaces } = require('os');
-
-    const nets = networkInterfaces();
-    const results = {};
-
-    for (const name of Object.keys(nets)) {
-        for (const net of nets[name]) {
-            const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
-            if (net.family === familyV4Value && !net.internal) {
-                if (!results[name]) {
-                    results[name] = [];
-                }
-                results[name].push(net.address);
-            }
-        }
-    }
+nativeServer.listen(PORT, null, null, () => {
+    const ips = server.getLocalHostIps();
 
     console.log('Server is initialized at the following addresses:\n');
-    Object.keys(results).forEach(interfaceName => {
-        results[interfaceName].forEach(ip => {
+    Object.keys(ips).forEach(interfaceName => {
+        ips[interfaceName].forEach(ip => {
             console.log(`http://${ip}:${PORT}`);
         });
     });

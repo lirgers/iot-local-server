@@ -3,6 +3,6 @@
     "version": "0.0.1",
     "author": "Leonid Taran <horinis@gmail.com>",
     "scripts": {
-        "server": "node ./app/server.js"
+        "server": "node ./app/main.js"
     }
 }

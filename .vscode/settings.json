@@ -1,4 +1,18 @@
 {
     "typescript.suggest.paths": true,
-    "javascript.suggest.paths": true
+    "javascript.suggest.paths": true,
+    "npm.packageManager": "npm",
+    "actionButtons": {
+        "defaultColor": "black", // Can also use string color names.
+        "loadNpmCommands": false, // Disables automatic generation of actions for npm commands.
+        "reloadButton":"🔄",
+        "commands": [
+            {
+                "name": "▶ iot-local-server ",
+                "color": "white",
+                "singleInstance": true,
+                "command": "npm run server", // This is executed in the terminal.
+            }
+        ]
+    }
 }
