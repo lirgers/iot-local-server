@@ -18,5 +18,5 @@ module.exports.ajaxJSON = async (url, options = {}, method = 'GET') => {
         return `${acc}${index === 0 ? '?' : '&'}${attrName}=${queryParams[attrName]}`;
     }, url);
     const rawResponse = await fetch(url, nativeOptions);
-    return await rawResponse.json();
+    return await rawResponse.json() || {};
 };

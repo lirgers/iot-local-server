@@ -1,6 +1,8 @@
 module.exports = {
-    click_networkName: function () {
-        alert('Network Name');
+    click_networkName: async function () {
+        const { ajaxJSON } = require('src/frontend/utils/ajax');
+        const res = await ajaxJSON('networkName');
+        alert(res.success ? res.networkName : `Query failed`);
     },
     attachHandlers: function (menuModel) {
         menuModel.menuItems.forEach(menuItem => {
