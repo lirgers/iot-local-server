@@ -4,7 +4,7 @@ customizeRequire(__dirname);
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-const server = require('src/backend/server');
+const server = require('src/backend/server/server');
 const promosify = require('src/common/promisify');
 
 const readFile = promosify(fs.readFile);

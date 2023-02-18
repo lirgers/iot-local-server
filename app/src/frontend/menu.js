@@ -21,7 +21,11 @@ module.exports = {
         });
     },
     renderItems: async function (renderingData) {
-        const template = require('src/frontend/template');
-        await template.render('menu-template', renderingData);
+        const { render } = require('src/frontend/renderer');
+        try {
+            await render('menu-template', renderingData);
+        } catch (error) {
+            console.error(error);
+        }
     }
 };

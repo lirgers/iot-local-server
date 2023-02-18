@@ -107,29 +107,5 @@ module.exports = {
         })
 
         return parsedText || text;
-    },
-    render: function (id, data) {
-        return new Promise((resolve, reject) => {
-            const template = document.getElementById(id);
-            if (!template) {
-                return reject('No template found');
-            }
-            try {
-                const parsedHtml = this.parse(template.textContent, data);
-                if (!parsedHtml) {
-                    return reject('Empty template result');
-                }
-                if (template.nextElementSibling && template.nextElementSibling.getAttribute('data-template-id') === id) {
-                    template.nextElementSibling.remove();
-                }
-                var renderedTemplateParent = document.createElement('div');
-                renderedTemplateParent.setAttribute('data-template-id', id);
-                template.after(renderedTemplateParent);
-                renderedTemplateParent.innerHTML = parsedHtml;
-                setTimeout(resolve, 0);
-            } catch (error) {
-                reject(error);
-            }
-        });
     }
 }

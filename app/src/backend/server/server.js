@@ -40,8 +40,8 @@ module.exports.getLocalHostIps = () => {
 module.exports.executeController = async (path, request, response) => {
     if (controllers[path]) {
         await require(controllers[path])(
-            require('src/backend/utils/req')(request),
-            require('src/backend/utils/res')(response, { templatesFolder })
+            require('src/backend/server/req')(request),
+            require('src/backend/server/res')(response, { templatesFolder })
         );
         return true;
     } else {
