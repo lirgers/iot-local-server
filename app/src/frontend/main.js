@@ -1,7 +1,8 @@
 (async function () {
     window.addEventListener('load', async () => {
         const menu = require('src/frontend/menu');
-        const menuModel = JSON.parse(await (await fetch('homeConfig.json')).text());
+        const { ajaxJSON } = require('src/frontend/utils/ajax');
+        const menuModel = await ajaxJSON('homeConfig.json');
         await menu.renderItems(menuModel);
         menu.attachHandlers(menuModel);
     });
