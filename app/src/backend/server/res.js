@@ -13,6 +13,11 @@ module.exports = (nativeResponse, options = {}) => {
             this.nativeResponse.setHeader("Content-Type", "text/html");
             this.nativeResponse.writeHead(200);
             this.nativeResponse.end(contents);
+        },
+        json: function (obj) {
+            this.nativeResponse.setHeader("Content-Type", "application/json");
+            this.nativeResponse.writeHead(200);
+            this.nativeResponse.end(Buffer.from(JSON.stringify(obj)));
         }
     };
 };
