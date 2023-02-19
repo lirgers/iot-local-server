@@ -6,7 +6,9 @@
             "id": "networkName"
         },
         {
-            "caption": "Option 2"
+            "caption": "Select network",
+            "events": "click",
+            "id": "networksList"
         },
         {
             "caption": "Option 3"

@@ -5,8 +5,8 @@ module.exports = {
         const exec = promisify(child_process.exec);
         switch (process.platform) {
             case 'darwin':
-                const res = await exec(`/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I  | awk -F' SSID: '  '/ SSID: / {print $2}'`)
-                return typeof res === 'string' ? res.trim() : '';
+                const result = await exec(`/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I  | awk -F' SSID: '  '/ SSID: / {print $2}'`)
+                return typeof result === 'string' ? result.trim() : '';
             default:
                 return '';
         }

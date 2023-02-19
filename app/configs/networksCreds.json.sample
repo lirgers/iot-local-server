@@ -1,0 +1,10 @@
+[
+    {
+        "ssid": "Network 1",
+        "password": "password1"
+    },
+    {
+        "ssid": "Network 2",
+        "password": "password2"
+    }
+]
