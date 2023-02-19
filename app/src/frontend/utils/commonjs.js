@@ -26,6 +26,9 @@ const require = path => {
     return module.exports[path];
 };
 const loadModule = (path) => {
+    if (/.+\.js$/.test(path)) {
+        path = path.substr(0, path.length - 3)
+    }
     const script = document.createElement('script');
     script.onload = () => {
         module.assignModulePath(path);

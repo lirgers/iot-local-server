@@ -1,6 +1,6 @@
 {
-    "typescript.suggest.paths": true,
-    "javascript.suggest.paths": true,
+    "typescript.suggest.paths": false,
+    "javascript.suggest.paths": false,
     "npm.packageManager": "npm",
     "actionButtons": {
         "defaultColor": "black", // Can also use string color names.
