@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>iot.local.server</string>
+    <key>ServiceDescription</key>
+    <string>Runs server for web app controling internals</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>${projectPath}/run.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/var/log/iot.job.err</string>
+    <key>StandardOutPath</key>
+    <string>/var/log/iot.job.out</string>
+</dict>
+</plist>

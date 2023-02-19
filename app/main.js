@@ -9,7 +9,9 @@ const promosify = require('src/common/promisify');
 
 const readFile = promosify(fs.readFile);
 const APP_DIR = `${__dirname}/`;
-const PORT = 8888;
+const DEV_PORT = 8888;
+const PROD_PORT = 9999;
+let PORT = DEV_PORT;
 
 server.attachControllers(APP_DIR);
 
@@ -61,6 +63,16 @@ const nativeServer = http.createServer(async (request, response) => {
     } catch (error) {
         console.error(error);
         notFound(response);
+    }
+});
+
+const args = process.argv;
+args.shift();
+args.shift();
+args.forEach(val => {
+    const [ name, value ] = val.split('=');
+    if (name === 'MODE' && value === 'PRODUCTION') {
+        PORT = PROD_PORT;
     }
 });
 

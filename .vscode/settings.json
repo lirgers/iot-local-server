@@ -8,11 +8,17 @@
         "reloadButton":"🔄",
         "commands": [
             {
-                "name": "▶ iot-local-server ",
+                "name": "▶ iot-local-server dev",
                 "color": "white",
                 "singleInstance": true,
-                "command": "npm run server", // This is executed in the terminal.
-            }
+                "command": "npm run run:dev", // This is executed in the terminal.
+            },
+            {
+                "name": "↻ iot-local-server prod",
+                "color": "white",
+                "singleInstance": true,
+                "command": "npm run rerun:prod",
+            },
         ]
     }
 }
