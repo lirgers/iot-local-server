@@ -14,11 +14,12 @@ module.exports = async (req, res) => {
     try {
         switch (process.platform) {
             case 'darwin':
-                await exec(`networksetup -setairportnetwork en0 "${ssid}" "${password}"`);
+                await exec(`networksetup -setairportnetwork en1 "${ssid}" "${password}"`);
                 break;
             default:
-        }  
+        }
     } catch (error) {
+        console.error(error);
         return res.json({ success: false });
     }
 

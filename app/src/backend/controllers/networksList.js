@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
         },
         ...result
     ];
-    
+
     res.json({
         success: true,
         menuItems: menuItems

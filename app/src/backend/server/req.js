@@ -7,7 +7,7 @@ module.exports = nativeRequest => {
             if (stringParams) {
                 stringParams.split('&').forEach(stringParam => {
                     const [ name, value ] = stringParam.split('=');
-                    params[name] = value;
+                    params[decodeURI(name)] = decodeURI(value);
                 });
             }
             return params;
