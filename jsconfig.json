@@ -5,4 +5,4 @@
       "moduleResolution": "classic"
     },
     "exclude": ["node_modules"] // Optional
-  }
+}
