@@ -7,7 +7,9 @@ module.exports = {
         let reg = /{{\w+}}/gm;
         let variablePlaceholder;
         while ((variablePlaceholder = reg.exec(text)) !== null) {
-            if (typeof data === 'string') {
+            if (variablePlaceholder[0] === '{{this}}') {
+                text = text.replace(variablePlaceholder[0], JSON.stringify(data));
+            } else if (typeof data === 'string') {
                 text = text.replace(variablePlaceholder[0], data);
             } else {
                 const dataPropertyName = this.match(variablePlaceholder[0], /{{(\w+)}}/);
@@ -42,6 +44,11 @@ module.exports = {
         let parsed = commandBlock;
         const emptyChildData = data[dataPropertyName] === null || data[dataPropertyName] === undefined;
         const emptyParentData = parent[dataPropertyName] === undefined || parent[dataPropertyName] === null;
+        let self;
+
+        if (dataPropertyName === 'this' && parent) {
+            self = parent;
+        }
 
         if (isTrue && (emptyChildData && emptyParentData)
             || (!isTrue && data[dataPropertyName])) {
@@ -59,8 +66,11 @@ module.exports = {
             }
         }
 
-        if ((!emptyChildData && isTrue) || (!emptyParentData && isTrue) || emptyChildData && !isTrue) {
-            const sourceAttrVal = emptyChildData ? parent[dataPropertyName] : data[dataPropertyName];
+        if (self || (!emptyChildData && isTrue) || (!emptyParentData && isTrue) || emptyChildData && !isTrue) {
+            let sourceAttrVal = emptyChildData ? parent[dataPropertyName] : data[dataPropertyName];
+            if (self) {
+                sourceAttrVal = JSON.stringify(self);
+            }
             if (typeof sourceAttrVal === 'string') {
                 parsed = this.replaceVariable(innerBlock, sourceAttrVal);
             } else if (sourceAttrVal instanceof Array) {

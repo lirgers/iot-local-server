@@ -19,7 +19,7 @@
         <noscript type="template" id="menu-template">
             <div class="grid-menu">
                 {{#menuItems}}
-                    <button {{#id}}data-id="{{id}}"{{/id}}>{{caption}}</button>
+                    <menu-item data-data='{{this}}'>{{caption}}</menu-item>
                 {{/menuItems}}
             </div>
         </noscript>
