@@ -7,7 +7,9 @@
             loadModule('src/common/template');
             loadModule('src/frontend/renderer');
             loadModule('src/frontend/utils/ajax');
-            loadModule('src/frontend/components/menu');
+            loadModule('src/frontend/utils/componentEventEmitter');
+            loadModule('src/frontend/components/MenuList');
+            loadModule('src/frontend/components/MenuItem');
             loadModule('src/frontend/main');
         </script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -16,12 +18,14 @@
     </head>
     <body>
         <div id="loadingIndicator" class="loader-line" hidden></div>
-        <noscript type="template" id="menu-template">
-            <div class="grid-menu">
-                {{#menuItems}}
-                    <menu-item data-data='{{this}}'>{{caption}}</menu-item>
-                {{/menuItems}}
-            </div>
-        </noscript>
+        <menu-list data-bind-menu-item="true" data-initial-resource="configs/homePage.json">
+            <noscript type="template" id="menu-template">
+                <div class="grid-menu">
+                    {{#menuItems}}
+                        <menu-item data-bind-menu-list="true" data-data='{{this}}'>{{caption}}</menu-item>
+                    {{/menuItems}}
+                </div>
+            </noscript>
+        </menu-list>
     </body>
 </html>
