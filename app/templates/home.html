@@ -4,12 +4,16 @@
         <script src="src/frontend/utils/commonjs.js"></script>
         <script>
             loadModule('src/common/promisify');
-            loadModule('src/common/template');
+            loadModule('src/common/simplicity');
             loadModule('src/frontend/renderer');
             loadModule('src/frontend/utils/ajax');
             loadModule('src/frontend/utils/componentEventEmitter');
             loadModule('src/frontend/components/MenuList');
             loadModule('src/frontend/components/MenuItem');
+            loadModule('src/frontend/components/MenuItemBack');
+            loadModule('src/frontend/components/MenuItemNetworkList');
+            loadModule('src/frontend/components/MenuItemNetworkName');
+            loadModule('src/frontend/components/MenuItemSelectNetwork');
             loadModule('src/frontend/main');
         </script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -18,12 +22,34 @@
     </head>
     <body>
         <div id="loadingIndicator" class="loader-line" hidden></div>
-        <menu-list data-bind-menu-item="true" data-initial-resource="configs/homePage.json">
+        <menu-list
+            data-bind-menu-item="true"
+            data-bind-menu-item-network-name="true"
+            data-bind-menu-item-network-list="true"
+            data-bind-menu-item-select-network="true"
+            data-bind-menu-item-back="true"
+            data-initial-resource="configs/homePage.json"
+        >
             <noscript type="template" id="menu-template">
                 <div class="grid-menu">
-                    {{#menuItems}}
-                        <menu-item data-bind-menu-list="true" data-data='{{this}}'>{{caption}}</menu-item>
-                    {{/menuItems}}
+                    #foreach ( $item in $menuItems )
+                        #if ( $item.id )
+                            #if ( $item.id === 'networkName' )
+                                <menu-item-network-name data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-name>
+                            #end
+                            #if ( $item.id === 'networksList' )
+                                <menu-item-network-list data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-list>
+                            #end
+                            #if ( $item.id === 'selectNetwork' )
+                                <menu-item-select-network data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-select-network>
+                            #end
+                            #if ( $item.id === 'back' )
+                                <menu-item-back data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-back>
+                            #end
+                        #else
+                            <menu-item data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item>
+                        #end
+                    #end
                 </div>
             </noscript>
         </menu-list>

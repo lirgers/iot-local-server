@@ -277,7 +277,11 @@ module.exports.get = () => {
                             break;
                     }
                 } else {
-                    this.parsed = this.parsed.replace(variable, JSON.stringify(this.getEnvValueFromExpression(variable)));
+                    let value = this.getEnvValueFromExpression(variable);
+                    if (typeof value === 'object') {
+                        value = JSON.stringify(value);
+                    }
+                    this.parsed = this.parsed.replace(variable, value);
                 }
                 break;
             }

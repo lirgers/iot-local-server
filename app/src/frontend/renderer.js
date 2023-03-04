@@ -1,13 +1,13 @@
 module.exports = {
     render: function (id, data) {
-        const template = require('src/common/template');
-        return new Promise((resolve, reject) => {
+        const simplicity = require('src/common/simplicity').get();
+        return new Promise(async (resolve, reject) => {
             const templateEl = document.getElementById(id);
             if (!templateEl) {
                 return reject('No template found');
             }
             try {
-                const parsedHtml = template.parse(templateEl.textContent, data);
+                const parsedHtml = await simplicity.parse(templateEl.textContent, data);
                 if (!parsedHtml) {
                     return reject('Empty template result');
                 }
