@@ -18,7 +18,7 @@ module.exports.ajaxJSON = async (url, options = {}, method = 'GET') => {
         return `${acc}${index === 0 ? '?' : '&'}${attrName}=${queryParams[attrName]}`;
     }, url);
     document.body.classList.add('loading-mask');
-    const loadingIndicatorEl = document.getElementById('loadingIndicator');
+    const loadingIndicatorEl = document.getElementById('loadingIndicator') || {};
 
     try {
         loadingIndicatorEl.hidden = false;

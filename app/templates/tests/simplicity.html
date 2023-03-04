@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <script src="src/frontend/utils/commonjs.js"></script>
+        <script>
+            loadModule('src/frontend/utils/ajax');
+            loadModule('src/common/simplicity');
+            loadModule('src/common/promisify');
+            loadModule('src/frontend/tests/simplicity');
+        </script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <link rel="stylesheet" href="styles/main.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <noscript type="template" id="template-test">
+            #set( $name = $menuItems[0].caption.toUpperCase() )
+            <h1>caption 0 $name</h1>
+            #set( $value = $menuItems[0].caption + $menuItems[1].caption )
+            <h1>caption 0 + caption 1 $value</h1>
+
+            #foreach ( $item in $menuItems )
+                #if( $item.caption === 'Select network' )
+                    <h1>this is $item.caption caption</h1>
+                #elseif($item.id === 'networkName')
+                    this is networkName item
+                #elseif($item.caption.toLowerCase() === 'option 3')
+                    should be option 3 - $item.caption
+                #else
+                    <h1>$item.caption</h1>
+                #end
+            #end
+
+            #if( $value )
+                <h1>$value</h1>
+            #end
+
+            #if( $menuItems )
+                <h1>$name</h1>
+            #elseif($menuItems[0].id === 'networkName')
+                first menu item id is defined
+            #elseif($name === $menuItems[0].caption.toUpperCase())
+                #if ( $namee )
+                    there is namee variable
+                #else
+                    there is no namee variable
+                #end
+            #else
+                <h1>else thing happened</h1>
+            #end
+
+            #foreach ( $item in $menuItems )
+                <h1>$item.caption</h1>
+            #end
+
+            #foreach ( $item in $menuItems )
+                #if ( $item.id )
+                    #if ( $item.id === 'networkName' )
+                        <menu-item-network-name data-data='$item'>$item.caption</menu-item-network-name>
+                    #end
+                    #if ( $item.id === 'networkList' )
+                        <menu-item-network-list data-data='$item'>$item.caption</menu-item-network-list>
+                    #end
+                #else
+                    <menu-item data-data='$item'>$item.caption</menu-item>
+                #end
+            #end
+
+            #if( $menuItems )
+                menu items length = $menuItems.length
+                #set($length = $menuItems.length)
+                #if($length)
+                    menu items length is not equal to zero
+                #end
+            #else
+                menu items is not defined
+            #end
+
+            #foreach ( $item in $menuItems )
+                #if ( $item.id )
+                    there is an id for $item.caption
+                #else
+                    there is no id for $item.caption
+                #end
+            #end
+
+            #if ( $menuItems[0] === 'networksList')
+                WRONG
+            #elseif( $menuItems[1] === 'networksList' )
+                CORRECT
+            #end
+        </noscript>
+    </body>
+</html>
