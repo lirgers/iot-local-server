@@ -25,15 +25,30 @@ const module = (function () {
 const require = path => {
     return module.exports[path];
 };
+const modulesToLoad = [];
 const loadModule = (path) => {
-    if (/.+\.js$/.test(path)) {
-        path = path.substr(0, path.length - 3)
-    }
-    const script = document.createElement('script');
-    script.onload = () => {
-        module.assignModulePath(path);
+    const load = (path) => {
+        if (/.+\.js$/.test(path)) {
+            path = path.substr(0, path.length - 3)
+        }
+        const script = document.createElement('script');
+        script.onload = () => {
+            module.assignModulePath(path);
+            modulesToLoad.shift();
+            if (modulesToLoad.length) {
+                load(modulesToLoad[0]);
+            }
+        };
+        script.defer = true;
+        script.src = `${path}.js`;
+        document.head.appendChild(script);
     };
-    script.defer = true;
-    script.src = `${path}.js`;
-    document.head.appendChild(script);
+
+    if (modulesToLoad.length) {
+        modulesToLoad.push(path);
+        return;
+    } else {
+        modulesToLoad.push(path);
+    }
+    load(path);
 }
