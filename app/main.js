@@ -1,4 +1,4 @@
-const { customizeRequire } = require('./src/backend/utils/commonjs');
+const { customizeRequire } = require('./src/backend/utils/overwrites/commonjs');
 customizeRequire(__dirname);
 
 const http = require('http');

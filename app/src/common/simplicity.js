@@ -244,6 +244,10 @@ module.exports.get = () => {
                         return left / right;
                     case '==':
                         return left == right;
+                    case '!=':
+                        return left != right;
+                    case '!==':
+                        return left !== right;
                     case '===':
                         return left === right;
                     default:

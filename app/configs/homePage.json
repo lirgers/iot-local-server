@@ -11,7 +11,9 @@
             "id": "networksList"
         },
         {
-            "caption": "Option 3"
+            "caption": "Check Internet connection",
+            "events": "click",
+            "id": "checkInternet"
         },
         {
             "caption": "Option 4.."

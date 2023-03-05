@@ -14,6 +14,7 @@
             loadModule('src/frontend/components/MenuItemNetworkList');
             loadModule('src/frontend/components/MenuItemNetworkName');
             loadModule('src/frontend/components/MenuItemSelectNetwork');
+            loadModule('src/frontend/components/MenuItemCheckInternet');
             loadModule('src/frontend/main');
         </script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -36,20 +37,27 @@
                         #if ( $item.id )
                             #if ( $item.id === 'networkName' )
                                 <menu-item-network-name data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-name>
-                            #end
-                            #if ( $item.id === 'networksList' )
+                            #elseif ( $item.id === 'networksList' )
                                 <menu-item-network-list data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-list>
-                            #end
-                            #if ( $item.id === 'selectNetwork' )
+                            #elseif ( $item.id === 'selectNetwork' )
                                 <menu-item-select-network data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-select-network>
-                            #end
-                            #if ( $item.id === 'back' )
+                            #elseif ( $item.id === 'back' )
                                 <menu-item-back data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-back>
+                            #elseif ( $item.id === 'checkInternet' )
+                                <menu-item-check-internet data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-check-internet>
                             #end
                         #else
                             <menu-item data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item>
                         #end
                     #end
+                    
+                    <!-- <menu-item data-data='{}'>
+                        <label class="toggle">
+                            <input class="toggle-checkbox" type="checkbox" checked>
+                            <div class="toggle-switch"></div>
+                            <span class="toggle-label">Internet Monitoring</span>
+                        </label>
+                    </menu-item> -->
                 </div>
             </noscript>
         </menu-list>
