@@ -32,22 +32,22 @@
             data-initial-resource="configs/homePage.json"
         >
             <noscript type="template" id="menu-template">
-                <div class="grid-menu">
+                <div class="flex-menu">
                     #foreach ( $item in $menuItems )
                         #if ( $item.id )
                             #if ( $item.id === 'networkName' )
-                                <menu-item-network-name data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-name>
+                                <menu-item-network-name class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-name>
                             #elseif ( $item.id === 'networksList' )
-                                <menu-item-network-list data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-list>
+                                <menu-item-network-list class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-network-list>
                             #elseif ( $item.id === 'selectNetwork' )
-                                <menu-item-select-network data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-select-network>
+                                <menu-item-select-network class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-select-network>
                             #elseif ( $item.id === 'back' )
-                                <menu-item-back data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-back>
+                                <menu-item-back class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-back>
                             #elseif ( $item.id === 'checkInternet' )
-                                <menu-item-check-internet data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-check-internet>
+                                <menu-item-check-internet class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item-check-internet>
                             #end
                         #else
-                            <menu-item data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item>
+                            <menu-item class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item>
                         #end
                     #end
                     
