@@ -4,14 +4,18 @@ customizeRequire(__dirname);
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
+const { EventEmitter } = require('events');
 const server = require('src/backend/server/server');
 const promosify = require('src/common/promisify');
 
 const readFile = promosify(fs.readFile);
 const APP_DIR = `${__dirname}/`;
+global.APP_DIR = APP_DIR;
 const DEV_PORT = 8888;
 const PROD_PORT = 9999;
 let PORT = DEV_PORT;
+let IS_PROD = false;
+global.eventEmitter = new EventEmitter();
 
 server.attachControllers(APP_DIR);
 
@@ -73,6 +77,7 @@ args.forEach(val => {
     const [ name, value ] = val.split('=');
     if (name === 'MODE' && value === 'PRODUCTION') {
         PORT = PROD_PORT;
+        IS_PROD = true;
     }
 });
 
@@ -86,3 +91,8 @@ nativeServer.listen(PORT, null, null, () => {
         });
     });
 });
+
+if (IS_PROD) {
+    // run autoInternetRepair script
+    require('src/backend/scripts/autoInternetRepair');
+}

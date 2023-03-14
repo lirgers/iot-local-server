@@ -1,2 +1,3 @@
 app/configs/networksCreds.json
+app/configs/telegram.json
 service/darwin/run.sh

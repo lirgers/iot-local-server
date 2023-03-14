@@ -18,7 +18,11 @@ body {
         width: 20vh;
         height: 20vh;
     }
-    /* CSS */
+    .toggle {
+        font-size: 3.7rem;
+        margin-top: 2rem !important;
+        margin-left: 2rem;
+    }
 }
 
 .flex-menu-item {
@@ -164,6 +168,7 @@ body {
 }
 .toggle {
 	cursor: pointer;
+    margin-top: 0.5rem;
 	display: inline-block;
     font-family: -apple-system,".SFNSText-Regular","Helvetica Neue","Roboto","Segoe UI",sans-serif;
 }
@@ -176,11 +181,11 @@ body {
     background: linear-gradient(to bottom, #fff 0%,#eee 100%);
     border-radius: 50%;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
-    width: 24px;
-    height: 24px;
+    width: 4vh;
+    height: 4vh;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 0.5vh;
+    left: 0.5vh;
     transition: left 0.25s;
 }
 .toggle:hover .toggle-switch:before {
@@ -192,19 +197,20 @@ body {
     background: #56c080;
 }
 .toggle-checkbox:checked + .toggle-switch:before {
-    left: 30px;
+    left: 5.5vh;
 }
 
 .toggle-switch {
 	display: inline-block;
 	background: #ccc;
-	border-radius: 16px;
-	width: 58px;
-	height: 32px;
+	border-radius: 1.5vh;
+	width: 10vh;
+	height: 5vh;
 	position: relative;
 	vertical-align: middle;
 	transition: background 0.25s;
 }
+
 .toggle-checkbox {
 	position: absolute;
 	visibility: hidden;

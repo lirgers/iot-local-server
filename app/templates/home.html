@@ -15,6 +15,7 @@
             loadModule('src/frontend/components/MenuItemNetworkName');
             loadModule('src/frontend/components/MenuItemSelectNetwork');
             loadModule('src/frontend/components/MenuItemCheckInternet');
+            loadModule('src/frontend/components/AjaxToggler');
             loadModule('src/frontend/main');
         </script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -29,7 +30,7 @@
             data-bind-menu-item-network-list="true"
             data-bind-menu-item-select-network="true"
             data-bind-menu-item-back="true"
-            data-initial-resource="configs/homePage.json"
+            data-initial-resource="mainMenuData"
         >
             <noscript type="template" id="menu-template">
                 <div class="flex-menu">
@@ -50,15 +51,18 @@
                             <menu-item class="flex-menu-item" data-bind-menu-list="true" data-data='$item'>$item.caption</menu-item>
                         #end
                     #end
-                    
-                    <!-- <menu-item data-data='{}'>
-                        <label class="toggle">
-                            <input class="toggle-checkbox" type="checkbox" checked>
-                            <div class="toggle-switch"></div>
-                            <span class="toggle-label">Internet Monitoring</span>
-                        </label>
-                    </menu-item> -->
                 </div>
+                <ajax-toggler data-data='{"events": "change"}' data-uri="toggleInternetAutoRepairScript">
+                    <label class="toggle">
+                        #if ( $isAutoInternetRepairEnabled )
+                            <input class="toggle-checkbox" type="checkbox" checked>
+                        #else
+                            <input class="toggle-checkbox" type="checkbox">
+                        #end
+                        <div class="toggle-switch"></div>
+                        <span class="toggle-label">Auto internet repair</span>
+                    </label>
+                </ajax-toggler>
             </noscript>
         </menu-list>
     </body>
