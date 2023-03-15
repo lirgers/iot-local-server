@@ -11,5 +11,6 @@
 module.exports = (req, res) => {
     const homeConfig = require('configs/homePage.json');
     homeConfig.isAutoInternetRepairEnabled = global.isAutoInternetRepairScriptEnabled;
+    homeConfig.isMainMenu = true;
     res.json(homeConfig);
 };

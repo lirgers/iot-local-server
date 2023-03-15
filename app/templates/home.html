@@ -52,17 +52,19 @@
                         #end
                     #end
                 </div>
-                <ajax-toggler data-data='{"events": "change"}' data-uri="toggleInternetAutoRepairScript">
-                    <label class="toggle">
-                        #if ( $isAutoInternetRepairEnabled )
-                            <input class="toggle-checkbox" type="checkbox" checked>
-                        #else
-                            <input class="toggle-checkbox" type="checkbox">
-                        #end
-                        <div class="toggle-switch"></div>
-                        <span class="toggle-label">Auto internet repair</span>
-                    </label>
-                </ajax-toggler>
+                #if ($isMainMenu)
+                    <ajax-toggler data-data='{"events": "change"}' data-uri="toggleInternetAutoRepairScript">
+                        <label class="toggle">
+                            #if ( $isAutoInternetRepairEnabled )
+                                <input class="toggle-checkbox" type="checkbox" checked>
+                            #else
+                                <input class="toggle-checkbox" type="checkbox">
+                            #end
+                            <div class="toggle-switch"></div>
+                            <span class="toggle-label">Auto internet repair</span>
+                        </label>
+                    </ajax-toggler>
+                #end
             </noscript>
         </menu-list>
     </body>

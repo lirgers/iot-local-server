@@ -4,7 +4,7 @@ class AjaxToggler extends MenuItem {
         const result = await require('src/frontend/utils/ajax').ajaxJSON(this.dataset.uri);
         if (!result || !result.success) {
             event.srcElement.checked = !isChecked;
-            alert(`There is an error with ${isChecked ? 'disabling' : 'enabling'} script`);
+            alert(`There is an error with a script ${isChecked ? 'enabling' : 'disabling'}`);
         }
     }
 }
