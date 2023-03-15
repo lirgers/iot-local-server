@@ -6,9 +6,9 @@ const url = require('url');
 const fs = require('fs');
 const { EventEmitter } = require('events');
 const server = require('src/backend/server/server');
-const promosify = require('src/common/promisify');
+const promisify = require('src/common/promisify');
 
-const readFile = promosify(fs.readFile);
+const readFile = promisify(fs.readFile);
 const APP_DIR = `${__dirname}/`;
 global.APP_DIR = APP_DIR;
 const DEV_PORT = 8888;
@@ -55,6 +55,14 @@ const nativeServer = http.createServer(async (request, response) => {
                     break;
                 case 'ico':
                     contentType = 'image/vnd.microsoft.icon';
+                    break;
+                case 'png':
+                    if (/^\/assets\/pwa-icon.+\.png$/.test(path)) {
+                        // delay the icon response for iOS PWA app,
+                        // as apperently the iPhone receives the icon too quickly without the timeout
+                        await promisify(setTimeout, true)(2000);
+                    }
+                    contentType = 'image/png';
             }
             response.writeHead(200, {
                 'Content-Type': contentType

@@ -1,0 +1,15 @@
+{
+    "name": "Home control",
+    "short_name": "Home control",
+    "start_url": "home",
+    "display": "standalone",
+    "background_color": "grey",
+    "theme_color": "grey",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/pwa-icon-3.png",
+            "type": "image/png", "sizes": "64x64"
+        }
+    ]
+}
