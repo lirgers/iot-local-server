@@ -7,6 +7,7 @@
         "init:mac:service": "sudo NVM_BIN=$NVM_BIN node ./service/darwin/initService.js && sudo chmod +x ./service/darwin/run.sh && sudo launchctl load /Library/LaunchDaemons/iot.local.server.plist",
         "run:prod": "sudo launchctl load /Library/LaunchDaemons/iot.local.server.plist",
         "rerun:prod": "sudo launchctl unload /Library/LaunchDaemons/iot.local.server.plist && sudo launchctl load /Library/LaunchDaemons/iot.local.server.plist",
-        "stop:prod": "sudo launchctl unload /Library/LaunchDaemons/iot.local.server.plist"
+        "stop:prod": "sudo launchctl unload /Library/LaunchDaemons/iot.local.server.plist",
+        "service:mac:status": "launchctl print system/iot.local.server | grep state"
     }
 }
